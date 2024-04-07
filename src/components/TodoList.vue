@@ -1,6 +1,6 @@
 <template>
   <v-text-field
-    label="Add Task"
+    label="Adicionar uma nova tarefa"
     :rules="rules"
     v-model="taskStore.titleTaskCreating"
     @keyup.enter="taskStore.addTask"

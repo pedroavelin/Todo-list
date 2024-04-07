@@ -13,13 +13,10 @@
         >
           <v-list>
           <v-list-item
-            prepend-avatar="https://cdn.vuetifyjs.com/images/john.png"
-            subtitle="avelinopedro@gmail.com"
+            prepend-avatar="https://media.licdn.com/dms/image/C4D03AQF7jP4O_1Dh1Q/profile-displayphoto-shrink_400_400/0/1630611358440?e=1718236800&v=beta&t=aQkK_GYU9_nrDrrO3Adzq2_E1YI0Tz7rngwdHLJG900"
+            subtitle="Web development"
             title="Pedro Epalanga"
           >
-            <template v-slot:append>
-              <v-btn icon="mdi-menu-down" size="small" variant="text"></v-btn>
-            </template>
           </v-list-item>
         </v-list>
         </v-img>
@@ -51,7 +48,7 @@
         </template>
         <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-        <v-app-bar-title>Todo list</v-app-bar-title>
+        <v-app-bar-title>Lista de tarefas</v-app-bar-title>
       </v-app-bar>
 
       <v-main>
@@ -69,7 +66,7 @@ import { useAlertStore } from '@/store/alert';
 const alertStore = useAlertStore();
 const drawer = ref(null);
 const items = [
-  { text: "Home", icon: "mdi-folder", to: "/home" },
-  { text: "About", icon: "mdi-account-multiple", to: "/about" },
+  { text: "Lista de tarefas", icon: "mdi-folder", to: "/home" },
+  { text: "Sobre", icon: "mdi-account-multiple", to: "/about" },
 ];
 </script>
