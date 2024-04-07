@@ -16,17 +16,17 @@ export const useAlertStore = defineStore('alert', {
     },
     notifyAlertCreated(){
         this.type = "success";
-        this.text = "Task created success";
+        this.text = "Tarefa criada com sucesso";
         this.notifyAlert();
     },
     notifyAlertDeleted(){
         this.type ="warning";
-        this.text = "Task deleted";
+        this.text = "Tarefa eliminada";
         this.notifyAlert();
     },
     notifyAlertUpdate(){
         this.type ="info";
-        this.text = "Task update";
+        this.text = "Tarefa actualizada";
         this.notifyAlert();
     }
   }

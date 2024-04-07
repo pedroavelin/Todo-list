@@ -19,11 +19,23 @@ const alertStore = useAlertStore();
 
 
 <style scoped>
-.alert-notification{
+.alert-notification {
   position: fixed;
-  z-index:1;
+  z-index: 1;
   bottom: 50%;
+  text-align: center;
   width: 100%;
-  padding: 0 35% 0 35%;
+  padding: 0 35% 0 35%; /* Manter o padding original para telas maiores */
+  box-sizing: border-box; /* Incluir o padding na largura total */
+}
+
+/* Media query para dispositivos móveis */
+@media screen and (max-width: 767px) {
+  .alert-notification {
+    width: 100%; /* Define a largura para 100% em dispositivos móveis */
+    padding: 10px; /* Remove o padding para ocupar toda a largura */
+    margin: 3px auto; /* Centraliza horizontalmente */
+  }
 }
 </style>
+
