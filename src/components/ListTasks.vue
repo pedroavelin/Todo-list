@@ -1,8 +1,7 @@
 <template>
   <div class="ma-3">
     <v-list lines="three" select-strategy="classic">
-      <v-list-subheader>Lista de tarefas</v-list-subheader>
-      <!-- <span class="font-weight-bold" v-text="scrollInvoked"></span> -->
+      <v-list-subheader>Total de tarefas - {{ taskStore.totalTasks() }}</v-list-subheader>
       <v-card class="overflow-y-auto" max-height="450" v-scroll.self="onScroll">
         <v-list-item
           

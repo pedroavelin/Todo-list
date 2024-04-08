@@ -3,10 +3,13 @@ import { defineStore } from 'pinia';
 import { useAlertStore } from './alert';
 const alertStore = useAlertStore();
 
-
 export const useTaskStore = defineStore('task', {
   state: () => ({
-    tasks: [],
+    tasks: [
+      { title: "Ir em casa do fiesta", description: "Regressar às 20h", done: true },
+      { title: "Fazer compras", description: "Ir ao supermercado", done: false },
+      { title: "Estudar", description: "Preparar para o exame", done: true },
+    ],
     titleTaskCreating: "",
     showDialogDelete: false,
     indextaskSelected: 0,
@@ -15,13 +18,13 @@ export const useTaskStore = defineStore('task', {
   actions: {
     addTask() {
       if (this.titleTaskCreating.length < 5) return
-        this.tasks.push({
-          title: this.titleTaskCreating,
-          done: false
-        });
-        this.titleTaskCreating = "";
-        this.saveLocalDate();
-        alertStore.notifyAlertCreated();
+      this.tasks.push({
+        title: this.titleTaskCreating,
+        done: false
+      });
+      this.titleTaskCreating = "";
+      this.saveLocalDate();
+      alertStore.notifyAlertCreated();
     },
 
     deleteTask() {
@@ -30,7 +33,7 @@ export const useTaskStore = defineStore('task', {
       this.saveLocalDate();
       alertStore.notifyAlertDeleted();
     },
-    updatetask(){
+    updatetask() {
       this.saveLocalDate();
       this.toggleEdit();
       alertStore.notifyAlertUpdate();
@@ -47,19 +50,36 @@ export const useTaskStore = defineStore('task', {
         this.indextaskSelected = index;
     },
 
-    saveLocalDate(){
+    saveLocalDate() {
       // tasks - Tasks é o nome do local storage
       localStorage.setItem('tasks', JSON.stringify(this.tasks))
     },
-      
-    getTasks(){
+
+    getTasks() {
       let items = localStorage.getItem('tasks')
-      if(items) 
+
+      if (items)
         this.tasks = JSON.parse(items)
     },
-    toggleDoneTask(index){
+
+    toggleDoneTask(index) {
       this.tasks[index].done = !this.tasks[index].done;
-      this.saveLocalDate(); 
+      this.saveLocalDate();
+    },
+
+    totalTasks() {
+      let totalTasks = this.tasks.length;
+      return totalTasks;
+    },
+    myTotalTasksDone() {
+      const tasksDone = this.tasks.filter(task => task.done === true);
+      const totalTaskDone = tasksDone.length;
+      return totalTaskDone;
+    },
+    myTotalTasksNotDone() {
+      const tasksDone = this.tasks.filter(task => task.done === false);
+      const totalTaskDone = tasksDone.length;
+      return totalTaskDone;
     }
   }
 })
