@@ -12,12 +12,13 @@
       >
         <template v-slot:actions>
           <v-btn
-            text="No"
-            @click="taskStore.toggleDelete"
+          @click="dialog = false"
+            text="Cancelar"
           ></v-btn>
           <v-btn
+            color="warning"
             class="ms-auto"
-            text="Yes"
+            text="Eliminar"
            @click="taskStore.deleteTask"
           ></v-btn>
         </template>
@@ -29,4 +30,5 @@
 import { useTaskStore } from '@/store/task'
 const taskStore = useTaskStore();
 
+const dialog = false
 </script>

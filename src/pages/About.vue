@@ -1,11 +1,15 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
- <div class="ma-4 text-center">
-  <h1 class="ma-4">Obrigado...!</h1>
-  <p class="ma-4">Tecnologias utilizadas</p>
- </div>
-  <div class="d-flex justify-lg-space-around align-center">
-    <v-card class="" width="244">
+  <div class="ma-4 text-center">
+    <h1 class="ma-4">Obrigado...!</h1>
+    <p class="ma-4">Tecnologias utilizadas</p>
+  </div>
+  <div
+    class="tecnologias overflow-y-auto"
+    max-height="50"
+    v-scroll.self="onScroll"
+  >
+    <v-card class="ma-2" width="244">
       <v-img
         class="ma-3"
         height="200px"
@@ -32,14 +36,12 @@
         <div v-show="show">
           <v-divider></v-divider>
 
-          <v-card-text>
-            
-          </v-card-text>
+          <v-card-text> </v-card-text>
         </div>
       </v-expand-transition>
     </v-card>
 
-    <v-card class="" width="244">
+    <v-card class="ma-2" width="244">
       <v-img
         class="ma-3"
         height="200px"
@@ -66,13 +68,12 @@
         <div v-show="show">
           <v-divider></v-divider>
 
-          <v-card-text value="1">
-          </v-card-text>
+          <v-card-text value="1"> </v-card-text>
         </div>
       </v-expand-transition>
     </v-card>
 
-    <v-card class="" width="244">
+    <v-card class="ma-2" width="244">
       <v-img
         class="ma-3"
         height="200px"
@@ -99,14 +100,12 @@
         <div v-show="show">
           <v-divider></v-divider>
 
-          <v-card-text>
-            
-          </v-card-text>
+          <v-card-text> </v-card-text>
         </div>
       </v-expand-transition>
     </v-card>
 
-    <v-card class="" width="244">
+    <v-card class="ma-2" width="244">
       <v-img
         class="ma-3"
         height="200px"
@@ -133,9 +132,7 @@
         <div v-show="show">
           <v-divider></v-divider>
 
-          <v-card-text>
-           
-          </v-card-text>
+          <v-card-text> </v-card-text>
         </div>
       </v-expand-transition>
     </v-card>
@@ -144,4 +141,17 @@
   <script setup>
 import { ref } from "vue";
 const show = ref(false);
+const onScroll = () => {
+  this.scrollInvoked++;
+};
 </script>
+
+<style scoped>
+.tecnologias {
+  display: flex;
+  flex-direction: reverse;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+</style>

@@ -51,15 +51,15 @@ export const useTaskStore = defineStore('task', {
     },
 
     saveLocalDate() {
-      // tasks - Tasks é o nome do local storage
+      // tasks - É o nome do local storage
       localStorage.setItem('tasks', JSON.stringify(this.tasks))
     },
 
     getTasks() {
-      let items = localStorage.getItem('tasks')
+      let items = localStorage.getItem('tasks');
 
       if (items)
-        this.tasks = JSON.parse(items)
+        this.tasks = JSON.parse(items);
     },
 
     toggleDoneTask(index) {

@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-mutating-props -->
 <template>
   <div class="text-center pa-4">
     <v-dialog v-model="taskStore.showDialogTaskFields" max-width="400" persistent>
