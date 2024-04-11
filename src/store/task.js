@@ -6,9 +6,9 @@ const alertStore = useAlertStore();
 export const useTaskStore = defineStore('task', {
   state: () => ({
     tasks: [
-      { title: "Ir em casa do fiesta", description: "Regressar às 20h", done: true },
-      { title: "Fazer compras", description: "Ir ao supermercado", done: false },
-      { title: "Estudar", description: "Preparar para o exame", done: true },
+      // { title: "Ir em casa do fiesta", description: "Regressar às 20h", done: true },
+      // { title: "Fazer compras", description: "Ir ao supermercado", done: false },
+      // { title: "Estudar", description: "Preparar para o exame", done: true },
     ],
     titleTaskCreating: "",
     showDialogDelete: false,
