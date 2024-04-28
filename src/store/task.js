@@ -1,15 +1,12 @@
 // Utilities
 import { defineStore } from 'pinia';
 import { useAlertStore } from './alert';
+import moment from 'moment';
 const alertStore = useAlertStore();
 
 export const useTaskStore = defineStore('task', {
   state: () => ({
-    tasks: [
-      // { title: "Ir em casa do fiesta", description: "Regressar às 20h", done: true },
-      // { title: "Fazer compras", description: "Ir ao supermercado", done: false },
-      // { title: "Estudar", description: "Preparar para o exame", done: true },
-    ],
+    tasks: [],
     titleTaskCreating: "",
     showDialogDelete: false,
     indextaskSelected: 0,
@@ -20,11 +17,13 @@ export const useTaskStore = defineStore('task', {
       if (this.titleTaskCreating.length < 5) return
       this.tasks.push({
         title: this.titleTaskCreating,
-        done: false
+        done: false,
+        dateCreat: moment().format('MMMM Do YYYY, h:mm:ss a')
       });
       this.titleTaskCreating = "";
       this.saveLocalDate();
       alertStore.notifyAlertCreated();
+      this. dateCreat()
     },
 
     deleteTask() {
@@ -71,15 +70,17 @@ export const useTaskStore = defineStore('task', {
       let totalTasks = this.tasks.length;
       return totalTasks;
     },
+
     myTotalTasksDone() {
       const tasksDone = this.tasks.filter(task => task.done === true);
       const totalTaskDone = tasksDone.length;
       return totalTaskDone;
     },
+
     myTotalTasksNotDone() {
       const tasksDone = this.tasks.filter(task => task.done === false);
       const totalTaskDone = tasksDone.length;
       return totalTaskDone;
     }
-  }
+  },
 })
