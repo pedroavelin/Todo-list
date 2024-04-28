@@ -1,15 +1,13 @@
 // Utilities
 import { defineStore } from 'pinia';
+import * as XLSX from 'xlsx';
 import { useAlertStore } from './alert';
+import moment from 'moment';
 const alertStore = useAlertStore();
 
 export const useTaskStore = defineStore('task', {
   state: () => ({
-    tasks: [
-      // { title: "Ir em casa do fiesta", description: "Regressar às 20h", done: true },
-      // { title: "Fazer compras", description: "Ir ao supermercado", done: false },
-      // { title: "Estudar", description: "Preparar para o exame", done: true },
-    ],
+    tasks: [],
     titleTaskCreating: "",
     showDialogDelete: false,
     indextaskSelected: 0,
@@ -18,13 +16,16 @@ export const useTaskStore = defineStore('task', {
   actions: {
     addTask() {
       if (this.titleTaskCreating.length < 5) return
+
       this.tasks.push({
         title: this.titleTaskCreating,
-        done: false
+        done: false,
+        dateCreat: this.formatDate(),
+        dataEnd: null
       });
-      this.titleTaskCreating = "";
       this.saveLocalDate();
       alertStore.notifyAlertCreated();
+      this.ordenarTarefasPorData(this.tasks);
     },
 
     deleteTask() {
@@ -33,11 +34,13 @@ export const useTaskStore = defineStore('task', {
       this.saveLocalDate();
       alertStore.notifyAlertDeleted();
     },
+
     updatetask() {
       this.saveLocalDate();
       this.toggleEdit();
       alertStore.notifyAlertUpdate();
     },
+
     toggleEdit(index) {
       console.log(index);
       this.showDialogTaskFields = !this.showDialogTaskFields;
@@ -71,15 +74,48 @@ export const useTaskStore = defineStore('task', {
       let totalTasks = this.tasks.length;
       return totalTasks;
     },
+
     myTotalTasksDone() {
       const tasksDone = this.tasks.filter(task => task.done === true);
       const totalTaskDone = tasksDone.length;
       return totalTaskDone;
     },
+
     myTotalTasksNotDone() {
       const tasksDone = this.tasks.filter(task => task.done === false);
       const totalTaskDone = tasksDone.length;
       return totalTaskDone;
+    },
+
+    formatDate(){
+      let data = moment().format('DD-MM-YYYY, h:mm:ss a ')
+      return data
+    },
+    
+    ordenarTarefasPorData(tasks) {
+      const tasksCopy = [...tasks];
+      const sortedTasks = tasksCopy.sort((a, b) => {
+        const dateA = moment(a.dateCreat, 'DD-MM-YYYY, h:mm:ss a');
+        const dateB = moment(b.dateCreat, 'DD-MM-YYYY, h:mm:ss a');
+        return dateA - dateB;
+      });
+
+      // console.log(sortedTasks);
+      // Atualizar o estado com as tarefas ordenadas
+      this.tasks = sortedTasks;
+    },
+    
+    exportTasksToExcel() {
+      const wb = XLSX.utils.book_new();
+
+      // Criar uma planilha
+      const ws = XLSX.utils.json_to_sheet(this.tasks);
+
+      // Adicionar a planilha ao livro de trabalho
+      XLSX.utils.book_append_sheet(wb, ws, 'Tarefas');
+
+      // Salvar o arquivo Excel
+      XLSX.writeFile(wb, 'tarefas.xlsx');
     }
-  }
+  },
 })

@@ -1,16 +1,21 @@
 <template>
-  <div class="ma-3">
+  <div class="ma-1">
+    
     <v-list lines="three" select-strategy="classic">
-      <v-list-subheader>Total de tarefas - {{ taskStore.totalTasks() }}</v-list-subheader>
-      <v-card class="overflow-y-auto" max-height="450" v-scroll.self="onScroll">
+      <v-row class="pa-1">
+        <v-col><v-list-subheader>Total de tarefas - {{ taskStore.totalTasks() }}</v-list-subheader></v-col>
+      <v-col cols="auto">
+        <v-btn icon="mdi-size-xl" color="success" @click="taskStore.exportTasksToExcel()" size="small"></v-btn>
+      </v-col>
+      </v-row>
+      <v-card elevation="16" class="overflow-y-auto" max-height="450" v-scroll.self="onScroll">
+        
         <v-list-item
-          
           class="p-0 m-0"
           v-for="(task, index) in taskStore.tasks"
           :key="index"
           :value="index"
           @click="taskStore.toggleDoneTask(index)"
-          border
         >
           <template v-slot:prepend="{}">
             <v-list-item-action start>
@@ -18,13 +23,14 @@
             </v-list-item-action>
           </template>
 
-          <v-list-item-title>{{ task.title }}</v-list-item-title>
-
+          <v-list-item-title> {{ task.title }} <br> <v-icon color="success" icon="mdi mdi-calendar" size="15"/> {{task.dateCreat }}  <v-icon color="warning" icon="mdi mdi-calendar" size="15"/> {{ task.dataEnd }}</v-list-item-title>
+                    
           <v-list-item-subtitle>{{ task.description }}</v-list-item-subtitle>
 
           <template v-slot:append>
             <!-- START - MENU -->
             <v-menu>
+              
               <template v-slot:activator="{ props }">
                 <v-btn
                   color="grey-lighten-1"
@@ -34,6 +40,7 @@
                 >
                 </v-btn>
               </template>
+
               <v-list>
                 <v-list-item value="1" @click="taskStore.toggleEdit(index)">
                   <v-list-item-title>Editar</v-list-item-title>
@@ -43,6 +50,7 @@
                   <v-list-item-title>Eliminar</v-list-item-title>
                 </v-list-item>
               </v-list>
+              
             </v-menu>
           </template>
         </v-list-item>
