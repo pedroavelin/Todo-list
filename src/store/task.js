@@ -18,7 +18,7 @@ export const useTaskStore = defineStore('task', {
       this.tasks.push({
         title: this.titleTaskCreating,
         done: false,
-        dateCreat: moment().format('MMMM Do YYYY, h:mm:ss a'),
+        dateCreat: moment().format('LLLL'),
         dataEnd: null
       });
       this.titleTaskCreating = "";
@@ -33,11 +33,13 @@ export const useTaskStore = defineStore('task', {
       this.saveLocalDate();
       alertStore.notifyAlertDeleted();
     },
+
     updatetask() {
       this.saveLocalDate();
       this.toggleEdit();
       alertStore.notifyAlertUpdate();
     },
+    
     toggleEdit(index) {
       console.log(index);
       this.showDialogTaskFields = !this.showDialogTaskFields;
