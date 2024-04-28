@@ -17,7 +17,7 @@
             </v-list-item-action>
           </template>
 
-          <v-list-item-title>{{ task.title }} <v-icon color="primary" icon="mdi mdi-calendar" size="15"></v-icon> Criação: {{task.dateCreat }}</v-list-item-title>
+          <v-list-item-title>{{ task.title }} <v-icon color="success" icon="mdi mdi-calendar" size="15"/> {{task.dateCreat }}  <v-icon color="warning" icon="mdi mdi-calendar" size="15"/></v-list-item-title>
           
           <v-list-item-subtitle>{{ task.description }}</v-list-item-subtitle>
 
