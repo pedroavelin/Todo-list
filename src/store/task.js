@@ -7,16 +7,7 @@ const alertStore = useAlertStore();
 
 export const useTaskStore = defineStore('task', {
   state: () => ({
-    tasks: [
-      {title: 'Tarefa - A', done: true, dateCreat: '30-04-2024, 12:44:49 pm '},
-      {title: "Tarefa - C", done: false, dateCreat: "08-04-2024, 16:28:14 pm "},
-      {title: 'Tarefa - B', done: false, dateCreat: '10-04-2024, 10:15:00 am '},
-      {title: 'Tarefa - V', done: false, dateCreat: '15-04-2024, 14:30:30 pm '},
-      {title: 'Tarefa - C', done: false, dateCreat: '20-04-2024, 08:00:00 am '},
-      {title: 'Tarefa - H', done: false, dateCreat: '25-04-2024, 17:45:20 pm '},
-      {title: 'Tarefa - I', done: false, dateCreat: '01-04-2024, 09:30:00 am '},
-      {title: 'Tarefa - X', done: false, dateCreat: '05-04-2024, 13:20:45 pm '}
-    ],
+    tasks: [],
     titleTaskCreating: "",
     showDialogDelete: false,
     indextaskSelected: 0,
