@@ -18,13 +18,11 @@ export const useTaskStore = defineStore('task', {
       this.tasks.push({
         title: this.titleTaskCreating,
         done: false,
-        dateCreat: moment().format('LLLL'),
+        dateCreat: this.formatDate(),
         dataEnd: null
       });
-      this.titleTaskCreating = "";
       this.saveLocalDate();
       alertStore.notifyAlertCreated();
-      this. dateCreat()
     },
 
     deleteTask() {
@@ -39,7 +37,7 @@ export const useTaskStore = defineStore('task', {
       this.toggleEdit();
       alertStore.notifyAlertUpdate();
     },
-    
+
     toggleEdit(index) {
       console.log(index);
       this.showDialogTaskFields = !this.showDialogTaskFields;
@@ -84,6 +82,10 @@ export const useTaskStore = defineStore('task', {
       const tasksDone = this.tasks.filter(task => task.done === false);
       const totalTaskDone = tasksDone.length;
       return totalTaskDone;
+    },
+    formatDate(){
+      let data = moment().format('DD-MM-YYYY, h:mm:ss a')
+      return data
     }
   },
 })

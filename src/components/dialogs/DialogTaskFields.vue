@@ -5,8 +5,18 @@
       <v-card>
         <v-card-title>Edit task</v-card-title>
         <v-card-text>
-          <v-text-field label="Title" v-model="props.task.title"></v-text-field>
-          <v-text-field label="Desciption" v-model="props.task.description"></v-text-field>
+          <v-text-field label="Title" v-model="props.task.title" />
+          <v-text-field label="Desciption" v-model="props.task.description" />
+
+          <v-menu v-model="menu">
+            <template v-slot:activator="{ active }">
+              <v-text-field :value="due" v-on="active" label="Due date" prepend-icon="date_range" @focus="menu = true" />
+            </template>
+            <v-row justify="space-around">
+              <v-date-picker color="primary" v-model="due" @input="menu = true"></v-date-picker>
+            </v-row>
+          </v-menu>
+
         </v-card-text>
         <template v-slot:actions>
           <v-spacer></v-spacer>
@@ -24,7 +34,16 @@
 import { defineProps } from "vue";
 import { useTaskStore } from '@/store/task'
 const taskStore = useTaskStore();
+// import { useDate } from 'vuetify'
+
+// const date = useDate()
+
+// const formatData = date.format('AAAA-MM-DD', 'fullDateWithWeekday')
+
+
 const props = defineProps({
   task: Object
 });
+
+// const due = ref(null)
 </script>
