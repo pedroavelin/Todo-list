@@ -1,8 +1,14 @@
 <template>
-  <div class="ma-3">
+  <div class="ma-1">
+    
     <v-list lines="three" select-strategy="classic">
-      <v-list-subheader>Total de tarefas - {{ taskStore.totalTasks() }}</v-list-subheader>
-      <v-card class="overflow-y-auto" max-height="450" v-scroll.self="onScroll">
+      <v-row class="pa-1">
+        <v-col><v-list-subheader>Total de tarefas - {{ taskStore.totalTasks() }}</v-list-subheader></v-col>
+      <v-col cols="auto">
+        <v-btn icon="mdi-size-xl" color="success" @click="taskStore.exportTasksToExcel()" size="small"></v-btn>
+      </v-col>
+      </v-row>
+      <v-card elevation="16" class="overflow-y-auto" max-height="450" v-scroll.self="onScroll">
         
         <v-list-item
           class="p-0 m-0"
@@ -17,7 +23,7 @@
             </v-list-item-action>
           </template>
 
-          <v-list-item-title>{{ task.title }} <v-icon color="success" icon="mdi mdi-calendar" size="15"/> {{task.dateCreat }}  <v-icon color="warning" icon="mdi mdi-calendar" size="15"/></v-list-item-title>
+          <v-list-item-title> {{ task.title }} <br> <v-icon color="success" icon="mdi mdi-calendar" size="15"/> {{task.dateCreat }}  <v-icon color="warning" icon="mdi mdi-calendar" size="15"/> {{ task.dataEnd }}</v-list-item-title>
                     
           <v-list-item-subtitle>{{ task.description }}</v-list-item-subtitle>
 
@@ -65,7 +71,6 @@ import { useTaskStore } from "@/store/task";
 
 const taskStore = useTaskStore();
 // const scrollInvoked = ref(0);
-
 
 onMounted(() => {
   taskStore.getTasks();
