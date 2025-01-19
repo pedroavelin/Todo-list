@@ -88,7 +88,7 @@ export const useTaskStore = defineStore('task', {
     },
 
     formatDate(){
-      let data = moment().format('DD-MM-YYYY, h:mm:ss a ')
+      let data = moment().format('DD-MM-YYYY')
       return data
     },
     
