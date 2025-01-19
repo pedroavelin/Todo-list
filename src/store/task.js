@@ -20,7 +20,7 @@ export const useTaskStore = defineStore('task', {
       this.tasks.push({
         title: this.titleTaskCreating,
         done: false,
-        dateCreat: this.formatDate(),
+        dateCreat: this.formatDate('DD-MM-YYYY'),
         dataEnd: null
       });
       this.saveLocalDate();
