@@ -8,7 +8,7 @@
         <v-btn icon="mdi-size-xl" color="success" @click="taskStore.exportTasksToExcel()" size="small"></v-btn>
       </v-col>
       </v-row>
-      <v-card elevation="16" class="overflow-y-auto" max-height="450" v-scroll.self="onScroll">
+      <v-card elevation="16" class="overflow-y-auto" max-height="350" v-scroll.self="onScroll">
         
         <v-list-item
           class="p-0 m-0"
@@ -43,7 +43,7 @@
 
               <v-list>
                 <v-list-item value="1" @click="taskStore.toggleEdit(index)">
-                  <v-list-item-title>Editar</v-list-item-title>
+                  <v-list-item-title>Editarx</v-list-item-title>
                   <v-divider />
                 </v-list-item>
                 <v-list-item value="2" @click="taskStore.toggleDelete(index)">
