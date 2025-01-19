@@ -43,7 +43,7 @@
 
               <v-list>
                 <v-list-item value="1" @click="taskStore.toggleEdit(index)">
-                  <v-list-item-title>Editarx</v-list-item-title>
+                  <v-list-item-title>Editar</v-list-item-title>
                   <v-divider />
                 </v-list-item>
                 <v-list-item value="2" @click="taskStore.toggleDelete(index)">
